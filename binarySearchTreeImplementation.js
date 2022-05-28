@@ -9,6 +9,11 @@ class Node {
 class BinarySearchTree {
   constructor() {
     this.root = null;
+    this.traversals = {
+      pre: "pre",
+      post: "post",
+      inOrder: "inOrder"
+    }
   }
   /* 
     Will implement the following: 
@@ -19,9 +24,9 @@ class BinarySearchTree {
     Helper functions:
      x findMinNode()
      x getRootNode() - realized this isn't necessary
-     inorder(node)
-     preorder(node)              
-     postorder(node)
+     x inorder(node)   \
+     x preorder(node)   \___ Made these into one function w/ enum            
+     x postorder(node) /
      x search(node, data)
   */
 
@@ -58,6 +63,16 @@ class BinarySearchTree {
       return node; 
     }
     return this.findMinNode(node.left);
+  }
+
+  traversal(node, order = "inOrder") {
+    if (node) {
+      if (order === this.traversals.pre) console.log(node.val)
+      this.traversal(node.left, order);
+      if (order === this.traversals.inOrder) console.log(node.val)
+      this.traversal(node.right, order);
+      if (order === this.traversals.post) console.log(node.val);
+    }
   }
 }
 

@@ -14,3 +14,8 @@ console.log(minNode);
 // test search()
 const searchNode = tree.search(92, tree.root);
 console.log(searchNode);
+
+// inOrder traversal & printout
+tree.traversal(tree.root, 'inOrder');
+console.log('done');
+tree.inOrder(tree.root);
