@@ -22,9 +22,17 @@ class BinarySearchTree {
      inorder(node)
      preorder(node)              
      postorder(node)
-     search(node, data)
+     x search(node, data)
   */
 
+  // find the first node within the tree matching the given value
+  // return false if not found
+  search(searchVal, node = null) {
+    if (!node) return false;
+    if (node.val === searchVal) return node;
+    if (searchVal < node.val) return this.search(searchVal, node.left);
+    if (searchVal > node.val) return this.search(searchVal, node.right);
+  }
 
   insertData(val) {
     const newNode = new Node(val);
