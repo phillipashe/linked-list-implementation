@@ -17,8 +17,8 @@ class BinarySearchTree {
                
  
     Helper functions:
-     findMinNode()
-     getRootNode()
+     x findMinNode()
+     x getRootNode() - realized this isn't necessary
      inorder(node)
      preorder(node)              
      postorder(node)
@@ -42,6 +42,14 @@ class BinarySearchTree {
       if (!node.right) return node.right = newNode;
       return this.insertNode(node.right, newNode);
     }
+  }
+
+  // find the earliest node with empty left pointer 
+  findMinNode(node) {
+    if (!node.left) {
+      return node; 
+    }
+    return this.findMinNode(node.left);
   }
 }
 
