@@ -60,7 +60,7 @@ class BinarySearchTree {
   // find the earliest node with empty left pointer 
   findMinNode(node) {
     if (!node.left) {
-      return node; 
+      return node;
     }
     return this.findMinNode(node.left);
   }
@@ -73,6 +73,31 @@ class BinarySearchTree {
       this.traversal(node.right, order);
       if (order === this.traversals.post) console.log(node.val);
     }
+  }
+
+  // helper function - resets the root of the tree with the modified tree
+  // returns false if tree isn't initialized
+  remove(val) {
+    if(!this.root) return false;
+    this.root = this.removeNode(this.root, val);
+    return this.root;
+  }
+
+
+  // remove a value from the tree, and update it
+  removeNode(node, val) {
+    if (node.val < val) return node.right = this.removeNode(node.right, val);
+    if (node.val > val) return node.left = this.removeNode(node.left, val);
+    if (!node.left && !node.right) return node = null;
+    if (!node.left) return node = node.left;
+    if (!node.right) return node = node.right;
+
+    // case where both subnodes exist, find smallest node in right subtree and replace with that
+    // delete the selected node by recursively calling removeNode() again
+    const smallestRightNode = this.findMinNode(node.right);
+    node.val = smallestRightNode.val;
+    smallestRightNode.right = this.removeNode(node.right, smallestRightNode.val);
+    return node;
   }
 }
 

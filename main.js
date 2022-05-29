@@ -17,5 +17,7 @@ console.log(searchNode);
 
 // inOrder traversal & printout
 tree.traversal(tree.root, 'inOrder');
-console.log('done');
-tree.inOrder(tree.root);
+
+// removing nodes
+for (val of nodeValues) tree.remove(val)
+console.log('removed 1');
